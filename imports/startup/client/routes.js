@@ -7,7 +7,7 @@ import '/imports/ui/components/categories.js';
 import '/imports/ui/components/share_form.js';
 import '/imports/ui/components/category_items.js';
 import '/imports/ui/components/item_show.js';
-import '/imports/ui/components/private.js';
+import '/imports/ui/components/item_book.js';
 
 // AccountsTemplates.configureRoute('changePwd');
 // AccountsTemplates.configureRoute('forgotPwd');
@@ -34,14 +34,6 @@ FlowRouter.route('/share', {
   },
 });
 
-FlowRouter.route('/private', {
-  name: "private",
-  triggersEnter: [AccountsTemplates.ensureSignedIn],
-  action(params, queryParams) {
-    BlazeLayout.render('App_body', { main: "private" });
-  }
-});
-
 FlowRouter.route('/:category', {
   name: 'things.category.items',
   action() {
@@ -53,5 +45,13 @@ FlowRouter.route('/:category/:item_id', {
   name: 'things.item.show',
   action() {
     BlazeLayout.render('App_body', { main: 'item_show' });
+  },
+});
+
+FlowRouter.route('/:category/:item_id/book', {
+  name: 'things.item.book',
+  triggersEnter: [AccountsTemplates.ensureSignedIn],
+  action() {
+    BlazeLayout.render('App_body', { main: 'item_book' });
   },
 });
