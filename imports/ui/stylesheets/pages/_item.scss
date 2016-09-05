@@ -1,0 +1,126 @@
+.item-page {
+	.header {
+		position: relative;
+		margin: 0;
+
+		.item-image {
+			position: relative;
+			background: #5c5953;
+
+			img {
+				display: block;
+				margin: 0 auto;
+				opacity: 0.6;
+			}
+		}
+
+		.header-content {
+			position: absolute;
+			bottom: 0;
+			left: 0;
+			padding: 40px 15px;
+
+			.title {
+				color: #fff;
+				font-size: 1.4em;
+				font-family: 'proxima_nova_rgbold';
+			}
+		}
+
+		.share {
+			position: absolute;
+			bottom: -22.5px;
+			right: 15px;
+
+			button {
+				// width: 45px;
+				padding: 0 15px;
+				border-radius: 45px;
+				border: 2px solid #fff;
+				font-weight: 700;
+			}
+		}
+
+		.price-wrapper {
+			position: absolute;
+		    bottom: -21px;
+			left: 50%;
+			margin: 0 0 0 -60px;
+		    background: #f2f2f2;
+		    line-height: 34px;
+		    padding: 0 20px;
+		    border: 2px solid #fff;
+		    border-radius: 45px;
+		}
+	}
+
+	.content {
+		.fa {
+			width: 20px;
+			margin: 0 5px 0 0;
+			text-align: center;
+		}
+	}
+
+	.top-panel {
+		padding: 35px 0 0;
+		margin: 0 0 20px;
+		@include clearfix();
+
+		.left,
+		.right {
+			@include make-xs-column(6);
+			padding: 0;
+		}
+
+		.right {
+			text-align: right;
+			line-height: 45px;
+		}
+
+		.user {
+			font-size: 0.875em;
+			font-weight: 700;
+			@include clearfix();
+
+			img {
+				display: block;
+				max-width: 45px;
+				height: auto;
+				margin: 0 10px 0 0;
+				float: left;
+				border-radius: 100%;
+			}
+
+			.name {
+				display: block;
+				width: 100%;
+				line-height: 45px;
+				vertical-align: middle;
+			}
+		}
+	}
+
+	.price-wrapper {
+		margin: 0 0 10px;
+	}
+
+	.address {
+		margin: 0 0 10px;
+		font-size: 0.875em;
+		font-weight: 700;
+	}
+
+	.avaliable {
+		margin: 0 0 10px;
+		font-size: 0.875em;
+
+		.label {
+			font-weight: 700;
+		}
+
+		.dates {
+			color: #888;
+		}
+	}
+}

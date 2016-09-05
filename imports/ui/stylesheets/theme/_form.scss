@@ -1,0 +1,37 @@
+.btn {
+	height: 45px;
+	padding: 0 25px;
+	font-size: 0.875em;
+	line-height: 45px;
+	text-transform: uppercase;
+	border-radius: 3px;
+}
+
+.btn{
+	&, &.btn-default {
+		background: #2ede84;
+		border: 0px;
+		color: #fff;
+
+		&:hover,
+		&:active,
+		&:focus,
+		&:active:focus {
+			background: #2ede84;
+			color: #fff;
+			opacity: 0.8;
+			outline: 0;
+		}
+	}
+
+	&.btn-primary {
+		background: #0a9aed;
+
+		&:hover,
+		&:active,
+		&:focus,
+		&:active:focus {
+			background: #0a9aed;
+		}
+	}	
+}
