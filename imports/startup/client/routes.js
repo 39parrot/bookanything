@@ -8,6 +8,7 @@ import '/imports/ui/components/share_form.js';
 import '/imports/ui/components/category_items.js';
 import '/imports/ui/components/item_show.js';
 import '/imports/ui/components/item_book.js';
+import '/imports/ui/components/my_history.js';
 
 // AccountsTemplates.configureRoute('changePwd');
 // AccountsTemplates.configureRoute('forgotPwd');
@@ -26,6 +27,14 @@ FlowRouter.route('/', {
     BlazeLayout.render('App_body', { main: 'categories' });
   },
 });
+
+FlowRouter.route('/history', {
+  name: 'my.history',
+  action() {
+    BlazeLayout.render('App_body', { main: 'my_history' });
+  },
+});
+
 
 FlowRouter.route('/share', {
   name: 'share.form',
