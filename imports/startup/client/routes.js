@@ -50,14 +50,14 @@ FlowRouter.route('/:category', {
   },
 });
 
-FlowRouter.route('/:category/:item_id', {
+FlowRouter.route('/:category/:thing', {
   name: 'things.item.show',
   action() {
     BlazeLayout.render('App_body', { main: 'item_show' });
   },
 });
 
-FlowRouter.route('/:category/:item_id/book', {
+FlowRouter.route('/:category/:thing/book', {
   name: 'things.item.book',
   triggersEnter: [AccountsTemplates.ensureSignedIn],
   action() {

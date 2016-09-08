@@ -2,10 +2,10 @@
   <div class="item-page page">
 		<div class="header">
 			<div class="item-image">
-				<img src="/images/categories/flat/item-banner.jpg" alt="banner">
+				<img src="{{thingImageUrl thing}}" alt="banner">
 			</div>
 			<div class="header-content">
-				<div class="title">Flat Scandinavian style for days & weeks</div>
+				<div class="title">{{thing.name}}</div>
 			</div>
 
 			<div class="share">
@@ -15,30 +15,31 @@
 			</div>
 
 			<div class="price-wrapper">
-				<span class="price">520 kr</span>
-				<span class="period">w</span>
+				<span class="price">{{thing.price}} kr</span>
+				<span class="period">{{thing.price_period}}</span>
 			</div>
 		</div>
 
 		<div class="content container">
 			<div class="top-panel">
-				<div class="left">
+				<!-- <div class="left"> -->
+        <div>
 					<div class="user">
-						<img src="/images/avatar.jpg" alt="user">
+						<img src="{{userProfilePictureUrl thing.owner}}" alt="user">
 
-						<span class="name">James Rodriguez</span>
+						<span class="name">{{userName thing.owner}}</span>
 					</div>
 				</div>
 
-				<div class="right">
+				<!-- <div class="right">
 					<div class="comments-count">
 						<i class="fa fa-comments-o" aria-hidden="true"></i>
 						<span class="count">3</span>
 					</div>
-				</div>
+				</div> -->
 			</div>
 
-			<div class="address"><i class="fa fa-map-marker" aria-hidden="true"></i> Sankt Eriksgatan 117, Business Center Bilpalatset</div>
+			<div class="address"><i class="fa fa-map-marker" aria-hidden="true"></i>{{thing.address}}</div>
 
 			<!-- <div class="avaliable">
 				<i class="fa fa-clock-o" aria-hidden="true"></i>
@@ -47,8 +48,7 @@
 			</div> -->
 
 			<div class="description">
-				<p>The observatory is a popular tourist attraction with an excellent view of the Hollywood sign, and an extensive array of space and science-related displays. </p>
-				<p>Since the observatory opened in 1935, admission has been free...</p>
+				<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam feugiat elit ut molestie semper. Donec condimentum diam libero, luctus iaculis eros ultrices ac. Aliquam non mi sit amet nisl commodo rutrum vitae et odio. Curabitur bibendum vehicula condimentum. Nullam vitae dolor consequat, ultricies sapien sit amet, suscipit augue. Sed efficitur tellus sapien, quis molestie odio tincidunt id. Nunc dictum faucibus porta.</p>
 			</div>
 		</div>
 	</div>
