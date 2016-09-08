@@ -2,98 +2,42 @@
   <div class="category-page page">
 		<div class="header">
 			<div class="category-image">
-				<img src="/images/categories/flat/banner.jpg" alt="banner">
+				<img src="{{category.image.url}}" alt="banner">
 			</div>
 			<div class="title-wrapper">
 				<div class="text-wrapper">
 					<div class="middle">
-						<div class="title">Flats</div>
-						<div class="item-counts">89</div>
+						<div class="title">{{category.displayName}}</div>
+            <!-- TODO: implement item counts  -->
+						<!-- <div class="item-counts">89</div> -->
 					</div>
 				</div>
 			</div>
 		</div>
 
 		<ul class="item-list list-unstyled">
-			<li class="item">
-				<div class="image">
-					<img src="/images/categories/flat/flat2.jpg" alt="">
-				</div>
-				<div class="content">
-					<div class="title">Flat Scandinavian style</div>
-					<div class="address"><i class="fa fa-map-marker" aria-hidden="true"></i> Sankt Eriksgatan 117, Business Center Bilpalatset</div>
-					<div class="bottom">
-						<div class="price-wrapper">
-							<span class="price">520 kr</span>
-							<span class="period">w</span>
-						</div>
-					</div>
-					<div class="next">
-						<i class="fa fa-chevron-right" aria-hidden="true"></i>
-					</div>
-				</div>
-				<a href="/cars/12345" class="backdrop"></a>
-			</li>
-			<li class="item">
-				<div class="image">
-					<img src="/images/categories/flat/flat3.jpg" alt="">
-				</div>
-				<div class="content">
-					<div class="title">Flat Scandinavian style for days & weeks</div>
-					<div class="address"><i class="fa fa-map-marker" aria-hidden="true"></i> Sankt Eriksgatan 117, Business Center Bilpalatset</div>
-					<div class="bottom">
-						<div class="price-wrapper">
-							<span class="price">520 kr</span>
-							<span class="period">w</span>
-						</div>
-					</div>
-					<div class="next">
-						<i class="fa fa-chevron-right" aria-hidden="true"></i>
-					</div>
-				</div>
-				<a href="/cars/823465" class="backdrop"></a>
-			</li>
-			<li class="item">
-				<div class="image">
-					<img src="/images/categories/flat/flat4.jpg" alt="">
-				</div>
-				<div class="content">
-					<div class="title">Flat Scandinavian style for days & weeks</div>
-					<div class="address"><i class="fa fa-map-marker" aria-hidden="true"></i> Sankt Eriksgatan 117, Business Center Bilpalatset</div>
-					<div class="bottom">
-						<div class="price-wrapper">
-							<span class="price">520 kr</span>
-							<span class="period">d</span>
-						</div>
-					</div>
-
-					<div class="next">
-						<i class="fa fa-chevron-right" aria-hidden="true"></i>
-					</div>
-				</div>
-				<a href="/cars/208657" class="backdrop"></a>
-			</li>
-			<li class="item">
-				<div class="image">
-					<img src="/images/categories/flat/flat2.jpg" alt="">
-				</div>
-				<div class="content">
-					<div class="title">Simple flat</div>
-					<div class="address"><i class="fa fa-map-marker" aria-hidden="true"></i> Sankt Eriksgatan 117, Business Center Bilpalatset</div>
-
-					<div class="bottom">
-						<div class="price-wrapper">
-							<span class="price">520 kr</span>
-							<span class="period">w</span>
-						</div>
-					</div>
-
-					<div class="next">
-						<i class="fa fa-chevron-right" aria-hidden="true"></i>
-					</div>
-				</div>
-				<a href="/item.html" class="backdrop"></a>
-			</li>
+      <!-- TODO: show text "Oops... No things in this category so far" when no things -->
+      {{#each thing in things}}
+  			<li class="item">
+  				<div class="image">
+  					<img src="{{thingImageUrl thing}}" alt="">
+  				</div>
+  				<div class="content">
+  					<div class="title">{{thing.name}}</div>
+  					<div class="address"><i class="fa fa-map-marker" aria-hidden="true"></i>{{thing.address}}</div>
+  					<div class="bottom">
+  						<div class="price-wrapper">
+  							<span class="price">{{thing.price}} kr</span>
+  							<span class="period">{{thing.price_period}}</span>
+  						</div>
+  					</div>
+  					<div class="next">
+  						<i class="fa fa-chevron-right" aria-hidden="true"></i>
+  					</div>
+  				</div>
+  				<a href="/{{category.name}}/{{thing.slug}}" class="backdrop"></a>
+  			</li>
+      {{/each}}
 		</ul>
 	</div>
 </template>
