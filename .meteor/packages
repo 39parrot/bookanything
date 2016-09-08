@@ -38,3 +38,4 @@ useraccounts:bootstrap
 useraccounts:flow-routing
 service-configuration
 peerlibrary:aws-sdk
+sacha:spin
