@@ -9,7 +9,7 @@
 			</div>
 
 			<div class="share">
-				<a href="/cars/12345/book" class="btn btn-default">
+				<a href="/{{thing.category}}/{{thing.slug}}/book" class="btn btn-default">
 					Book
 				</a>
 			</div>
@@ -25,9 +25,9 @@
 				<!-- <div class="left"> -->
         <div>
 					<div class="user">
-						<img src="{{userProfilePictureUrl thing.owner}}" alt="user">
+						<img src="{{userProfilePictureUrlByUserId thing.owner}}" alt="user">
 
-						<span class="name">{{userName thing.owner}}</span>
+						<span class="name">{{userNameByUserId thing.owner}}</span>
 					</div>
 				</div>
 

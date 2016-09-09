@@ -9,6 +9,7 @@ import '/imports/ui/components/category_items.js';
 import '/imports/ui/components/item_show.js';
 import '/imports/ui/components/item_book.js';
 import '/imports/ui/components/my_history.js';
+import '/imports/ui/components/deal.js';
 
 // AccountsTemplates.configureRoute('changePwd');
 // AccountsTemplates.configureRoute('forgotPwd');
@@ -40,6 +41,14 @@ FlowRouter.route('/share', {
   name: 'share.form',
   action() {
     BlazeLayout.render('App_body', { main: 'share_form' });
+  },
+});
+
+FlowRouter.route('/deals/:deal', {
+  name: 'deals.deal',
+  triggersEnter: [AccountsTemplates.ensureSignedIn],
+  action() {
+    BlazeLayout.render('App_body', { main: 'deal' });
   },
 });
 

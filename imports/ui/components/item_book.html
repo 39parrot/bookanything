@@ -1,3 +1,5 @@
 <template name="item_book">
-  booking an item...
+  {{#if processing}}
+    {{> spinner}}
+  {{/if}}
 </template>

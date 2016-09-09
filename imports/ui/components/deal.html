@@ -1,0 +1,25 @@
+<template name="deal">
+  <div class="item-page page">
+		<div class="header">
+			<div class="item-image">
+				<img src="{{thingImageUrl thing}}" alt="banner">
+			</div>
+			<div class="header-content">
+				<div class="title">{{thing.name}}</div>
+			</div>
+    </div>
+
+    <div class="content container">
+			<div class="top-panel">
+				<!-- <div class="left"> -->
+        <div>
+					<div class="user">
+						<img src="{{ userProfilePictureUrlByUserId thing.owner }}" alt="user">
+
+						<span class="name">{{userNameByUserId thing.owner}}</span>
+					</div>
+				</div>
+      </div>
+    </div>
+  </div>
+</template>

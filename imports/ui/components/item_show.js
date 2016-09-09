@@ -22,11 +22,4 @@ Template.item_show.helpers({
   thingImageUrl(thing) {
     return thing.image && thing.image.url ? thing.image.url : "/images/no_image.png";
   },
-
-  userName(userId) {
-    return Meteor.users.findOne( { _id: userId } ).profile.name;
-  },
-  userProfilePictureUrl(userId) {
-    return `http://graph.facebook.com/${ Meteor.users.findOne( {_id: userId} ).services.facebook.id }/picture/?type=large`;
-  },
 });
