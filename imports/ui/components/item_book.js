@@ -20,6 +20,7 @@ Template.item_book.onCreated(function() {
       booking_dt: new Date(),
       pickup_dt: new Date(),
       return_dt: new Date(),
+      borrower: Meteor.userId(),
     },
     (err, _id) => {
       toastr.success('Booked!');

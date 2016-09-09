@@ -13,25 +13,39 @@
 			<div class="top-panel">
 				<!-- <div class="left"> -->
         <div>
+          Owner
 					<div class="user">
 						<img src="{{ userProfilePictureUrlByUserId thing.owner }}" alt="user">
 
-						<span class="name">{{userNameByUserId thing.owner}}</span>
+						<span class="name">{{ userNameByUserId thing.owner }}</span>
+					</div>
+				</div>
+        <div>
+          Borrower
+					<div class="user">
+						<img src="{{ userProfilePictureUrlByUserId deal.borrower }}" alt="user">
+
+						<span class="name">{{ userNameByUserId deal.borrower }}</span>
 					</div>
 				</div>
         <div>
           <p>
-            Booked at: {{ thing.booking_dt }}
+            Booked at: {{ deal.booking_dt }}
           </p>
           <p>
-            Pick-up: {{ thing.pickup_dt }}
+            Pick-up: {{ deal.pickup_dt }}
           </p>
           <p>
-            Return: {{ thinп.return_dt }}
+            Return: {{ deal.return_dt }}
           </p>
         </div>
         <div>
-          Events/timeline
+          <hr/>
+          <input type="text" placeholder="leave a message..." />
+          <hr/>
+          9/9 13:23 comment
+          <hr/>
+          9/9 15:15 event
         </div>
       </div>
     </div>

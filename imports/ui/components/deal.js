@@ -26,6 +26,9 @@ Template.deal.onCreated(function() {
 });
 
 Template.deal.helpers({
+  deal() {
+    return Template.instance().state.deal.get();
+  },
   thing() {
     return Template.instance().state.thing.get();
   },
