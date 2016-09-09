@@ -1,3 +1,31 @@
 <template name="my_deals">
-  my deals...
+  <div class="category-page page">
+    <ul class="item-list list-unstyled">
+      <!-- TODO: show text "You haven't had any deals so far." when no things -->
+      {{#each deal in deals}}
+        <li class="item">
+          <div class="image">
+            <img src="{{thingImageUrl thing}}" alt="">
+          </div>
+          {{#let thing=(dealThing deal)}}
+            <div class="content">
+              <div class="title">{{deal.booking_dt}}</div>
+              <div class="title">{{thing.name}}</div>
+              <div class="address"><i class="fa fa-map-marker" aria-hidden="true"></i>{{thing.address}}</div>
+              <div class="bottom">
+                <div class="price-wrapper">
+                  <span class="price">{{thing.price}} kr</span>
+                  <span class="period">{{thing.price_period}}</span>
+                </div>
+              </div>
+              <div class="next">
+                <i class="fa fa-chevron-right" aria-hidden="true"></i>
+              </div>
+            </div>
+            <a href="/deals/{{deal.slug}}" class="backdrop"></a>
+          {{/let}}
+        </li>
+      {{/each}}
+    </ul>
+  </div>
 </template>

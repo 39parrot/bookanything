@@ -19,7 +19,4 @@ Template.item_show.helpers({
     }
     // return Things.find( { slug: FlowRouter.getParam('thing') } );
   },
-  thingImageUrl(thing) {
-    return thing.image && thing.image.url ? thing.image.url : "/images/no_image.png";
-  },
 });

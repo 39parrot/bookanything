@@ -32,7 +32,4 @@ Template.deal.helpers({
   thing() {
     return Template.instance().state.thing.get();
   },
-  thingImageUrl(thing) {
-    return thing && thing.image && thing.image.url ? thing.image.url : "/images/no_image.png";
-  },
 });

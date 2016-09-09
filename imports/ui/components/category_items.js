@@ -21,7 +21,4 @@ Template.category_items.helpers({
     // TODO: make infinite scroll
     return Things.find( { category: FlowRouter.getParam('category') } );
   },
-  thingImageUrl(thing) {
-    return thing.image && thing.image.url ? thing.image.url : "https://ba-items.s3.amazonaws.com/no_image.png?AWSAccessKeyId=AKIAJDXBIOUHHEPVPBRA&Expires=1504868108&Signature=WkNdULbOMPhHerZouyL8PdIf6ZM%3D";
-  }
 });
