@@ -1,12 +1,12 @@
-import './item_show.html';
+import './thing_show.html';
 
 import { Things } from '/imports/api/things/things.js';
 
-Template.item_show.onCreated(function() {
-  // console.log( FlowRouter );
+Template.thing_show.onCreated(function() {
+  
 });
 
-Template.item_show.helpers({
+Template.thing_show.helpers({
   thing() {
     return {
       slug: "123456",

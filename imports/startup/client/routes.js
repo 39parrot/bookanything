@@ -3,11 +3,11 @@ import { BlazeLayout } from 'meteor/kadira:blaze-layout';
 import { AccountsTemplates } from 'meteor/useraccounts:core';
 
 import '/imports/ui/layouts/app_body.js';
-import '/imports/ui/components/categories.js';
+import '/imports/ui/components/catalog.js';
+import '/imports/ui/components/category.js';
 import '/imports/ui/components/share_form.js';
-import '/imports/ui/components/category_items.js';
-import '/imports/ui/components/item_show.js';
-import '/imports/ui/components/item_book.js';
+import '/imports/ui/components/thing_show.js';
+import '/imports/ui/components/thing_book.js';
 import '/imports/ui/components/my_history.js';
 import '/imports/ui/components/deal.js';
 import '/imports/ui/components/me.js';
@@ -28,7 +28,14 @@ AccountsTemplates.configureRoute('signIn', {
 FlowRouter.route('/', {
   name: 'App.home',
   action() {
-    BlazeLayout.render('App_body', { main: 'categories' });
+    BlazeLayout.render('App_body', { main: 'catalog' });
+  },
+});
+
+FlowRouter.route('/catalog/:category', {
+  name: 'catalog.category',
+  action() {
+    BlazeLayout.render('App_body', { main: 'category' });
   },
 });
 
@@ -79,24 +86,17 @@ FlowRouter.route('/deals/:deal', {
   },
 });
 
-FlowRouter.route('/:category', {
-  name: 'things.category.items',
+FlowRouter.route('/things/:thing', {
+  name: 'things.thing.show',
   action() {
-    BlazeLayout.render('App_body', { main: 'category_items' });
+    BlazeLayout.render('App_body', { main: 'thing_show' });
   },
 });
 
-FlowRouter.route('/:category/:thing', {
-  name: 'things.item.show',
-  action() {
-    BlazeLayout.render('App_body', { main: 'item_show' });
-  },
-});
-
-FlowRouter.route('/:category/:thing/book', {
-  name: 'things.item.book',
+FlowRouter.route('/things/:thing/book', {
+  name: 'things.thing.book',
   triggersEnter: [AccountsTemplates.ensureSignedIn],
   action() {
-    BlazeLayout.render('App_body', { main: 'item_book' });
+    BlazeLayout.render('App_body', { main: 'thing_book' });
   },
 });

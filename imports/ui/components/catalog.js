@@ -1,12 +1,12 @@
-import './categories.html';
+import './catalog.html';
 
 import { CategoryCatalog } from '/imports/api/categories/categories.js';
 
-Template.categories.onCreated(function() {
+Template.catalog.onCreated(function() {
   // this.subscribe('categories');
 });
 
-Template.categories.helpers({
+Template.catalog.helpers({
   categories() {
     catalog = CategoryCatalog.findOne();
     return catalog ? catalog.categories : null;

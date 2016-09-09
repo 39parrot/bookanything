@@ -1,8 +1,8 @@
-import './item_book.html';
+import './thing_book.html';
 
 import { Deals } from '/imports/api/deals/deals.js';
 
-Template.item_book.onCreated(function() {
+Template.thing_book.onCreated(function() {
   this.state = {
     processing: new ReactiveVar(),
   }
@@ -36,7 +36,7 @@ Template.item_book.onCreated(function() {
   )
 });
 
-Template.item_book.helpers({
+Template.thing_book.helpers({
   processing() {
     return Template.instance().state.processing.get();
   }
