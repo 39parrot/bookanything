@@ -16,7 +16,10 @@ Template.item_book.onCreated(function() {
     {
       slug: _.random(100000, 999999).toString(),
       thing: FlowRouter.getParam('thing'),
-      booking_date: new Date(),
+      // TODO: should be done on the server
+      booking_dt: new Date(),
+      pickup_dt: new Date(),
+      return_dt: new Date(),
     },
     (err, _id) => {
       toastr.success('Booked!');
