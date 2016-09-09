@@ -21,12 +21,14 @@
 					</div>
 
           {{#if loggedIn}}
-					<div class="user">
-						<img src="{{ loggedInUserProfilePictureUrl }}" alt="user">
-						<!-- <div class="has-message">
-							<i class="fa fa-comments-o" aria-hidden="true"></i>
-						</div> -->
-					</div>
+  					<div class="user">
+              <a href="/me">
+  		          <img src="{{ loggedInUserProfilePictureUrl }}" alt="user">
+              </a>
+  						<!-- <div class="has-message">
+  							<i class="fa fa-comments-o" aria-hidden="true"></i>
+  						</div> -->
+  					</div>
           {{/if}}
 				</div>
 			</div>
