@@ -41,11 +41,24 @@
         </div>
         <div>
           <hr/>
-          <input type="text" placeholder="leave a message..." />
+          <input type="text" class="js-message" placeholder="leave a message..." />
+          {{#if canSendMessage}}<a href="#" class="js-send">Send</a>{{/if}}
           <hr/>
-          9/9 13:23 comment
-          <hr/>
-          9/9 15:15 event
+          <ul>
+            {{#each event in events}}
+              {{#with event}}
+                <li class="js-event" >
+                  <div style="{{ eventBackgroundCss event }}">
+                    <div class="user">
+                      <img src="{{ userProfilePictureUrlByUserId event.user }}" alt="user">
+                      {{ dt }} {{ content.text }}
+                    </div>
+                  </div>
+                  <hr/>
+                </li>
+              {{/with}}
+            {{/each}}
+          </ul>
         </div>
       </div>
     </div>
