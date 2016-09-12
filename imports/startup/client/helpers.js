@@ -14,3 +14,11 @@ Template.registerHelper('userNameByUserId', (userId) => {
 Template.registerHelper('thingImageUrl', (thing) => {
   return thing && thing.image && thing.image.url ? thing.image.url : "/images/no_image.png";
 });
+
+Template.registerHelper('loggedInUserProfilePictureUrl', () => {
+  return `http://graph.facebook.com/${Meteor.user().services.facebook.id}/picture/?type=large`;
+});
+
+Template.registerHelper('loggedInUserName', (userId) => {
+  return Meteor.users.findOne( { _id: Meteor.userId() } ).profile.name;
+});
