@@ -1,0 +1,7 @@
+<template name="messagesCountIndicator">
+  {{#if newMessagesCount gt 0}}
+    <a style="background-color: red; color: white; border-radius: 5px" href="/my/deals?withNewMessagesOnly=true">
+      <span>&nbsp;{{newMessagesCount}}&nbsp;</span>
+    </a>
+  {{/if}}
+</template>

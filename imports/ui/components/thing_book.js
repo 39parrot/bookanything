@@ -43,9 +43,7 @@ Template.thing_book.onCreated(function() {
           content: {
             text: "booked"
           },
-          seen: {
-            [Meteor.userId()]: true
-          }
+          seen: [ Meteor.userId() ]
         });
       }
     }

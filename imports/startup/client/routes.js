@@ -30,6 +30,7 @@ FlowRouter.route('/', {
   action() {
     BlazeLayout.render('App_body', { main: 'catalog' });
   },
+  breadcrumbText: "Catalog"
 });
 
 FlowRouter.route('/catalog/:category', {
@@ -37,6 +38,7 @@ FlowRouter.route('/catalog/:category', {
   action() {
     BlazeLayout.render('App_body', { main: 'category' });
   },
+  breadcrumbText: 'Catalog > Category'
 });
 
 FlowRouter.route('/history', {

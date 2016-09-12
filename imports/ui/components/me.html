@@ -31,24 +31,31 @@
 					<span>Profile</span>
 				</a>
 			</li>
+      <li>
+				<a href="/my/deals?withNewMessagesOnly=true">
+					<i class="fa fa-comments-o" aria-hidden="true"></i>
+					<span>New messages</span>
+					{{> messagesCountIndicator}}
+				</a>
+			</li>
 			<li>
 				<a href="/my/things">
 					<i class="fa fa-comments-o" aria-hidden="true"></i>
-					<span>Things</span>
-					<span class="counts">3</span>
+					<span>My things</span>
+					<span class="counts">{{myThingsCount}}</span>
 				</a>
 			</li>
 			<li>
 				<a href="/my/deals">
 					<i class="fa fa-plus" aria-hidden="true"></i>
-					<span>Deals</span>
-          <span class="counts">15</span>
+					<span>My deals</span>
+          <span class="counts">{{myDealsCount}}</span>
 				</a>
 			</li>
 			<li>
 				<a href="/share">
 					<i class="fa fa-cog" aria-hidden="true"></i>
-					<span>Share</span>
+					<span>Share a thing</span>
 				</a>
 			</li>
 			<li class="logout">

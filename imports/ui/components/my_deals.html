@@ -18,6 +18,13 @@
                   <span class="period">{{thing.price_period}}</span>
                 </div>
               </div>
+              {{#if newMessagesCount deal gt 0}}
+                <div> <!-- New messages -->
+                  <!-- TODO: a mock so far  -->
+                  <span>{{firstNewMessage}}</span>
+                  <span style="background-color: red; color: white">&nbsp;{{newMessagesCount deal}}&nbsp;</span>
+                </div>
+              {{/if}}
               <div class="next">
                 <i class="fa fa-chevron-right" aria-hidden="true"></i>
               </div>

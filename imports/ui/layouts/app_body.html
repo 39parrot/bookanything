@@ -18,9 +18,11 @@
 								<img src="/images/logo-white.png" alt="logotype">
 							</a>
 						</div>
+            <span style="color: white">{{ breadcrumbText }}</span>
 					</div>
 
           {{#if loggedIn}}
+            {{> messagesCountIndicator}}
   					<div class="user">
               <a href="/me">
   		          <img src="{{ loggedInUserProfilePictureUrl }}" alt="user">

@@ -44,14 +44,14 @@ Template.deal.helpers({
     return Template.instance().state.canSendMessage.get();
   },
   eventBackgroundCss(event) {
-    return event.seen[Meteor.userId()] ? "" : "background-color: lightgreen";
+    return event.seen.indexOf( Meteor.userId() ) != -1 ? "" : "background-color: lightgreen";
   }
 });
 
 Template.deal.events({
   // TODO: change it to "isElementInViewport"
   'click .js-event'(event, instance) {
-    Events.update({ _id: this._id }, { $set: { [`seen.${Meteor.userId()}`]: true } });
+    Events.update({ _id: this._id }, { $push: { seen: Meteor.userId() } });
   },
   'input .js-message'(event, instance) {
     if ( event.target.value.length > 0 ) {
@@ -75,9 +75,7 @@ Template.deal.events({
       content: {
         text
       },
-      seen: {
-        [Meteor.userId()]: true
-      }
+      seen: [ Meteor.userId() ]
     });
 
     toastr.success("Message sent");
