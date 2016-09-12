@@ -51,6 +51,7 @@ FlowRouter.route('/history', {
 
 FlowRouter.route('/share', {
   name: 'share.form',
+  triggersEnter: [AccountsTemplates.ensureSignedIn],
   action() {
     BlazeLayout.render('App_body', { main: 'share_form' });
   },
