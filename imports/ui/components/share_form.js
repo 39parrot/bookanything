@@ -30,18 +30,19 @@ Template.share_form.events({
     event.preventDefault();
 
     instance.state.processing.set(true);
+    freezeTheForm(instance);
 
-    event.target.disabled = true;
+    instance.$('.js-save')[0].disabled = true;
     let categoryInput = instance.$('select#category')[0];
-    categoryInput.disabled = true;
+    // categoryInput.disabled = true;
     let whatInput = instance.$('input#what')[0];
-    whatInput.disabled = true;
+    // whatInput.disabled = true;
     let whereInput = instance.$('input#where')[0];
-    whereInput.disabled = true;
+    // whereInput.disabled = true;
     let descriptionInput = instance.$('input#description')[0];
-    descriptionInput.disabled = true;
+    // descriptionInput.disabled = true;
     let priceInput = instance.$('input#price')[0];
-    priceInput.disabled = true;
+    // priceInput.disabled = true;
 
     console.log('saving...');
     // console.log(instance.myDropzone.files[0]);
@@ -56,6 +57,13 @@ Template.share_form.events({
       category: categoryInput.value,
       owner: Meteor.userId(),
     }
+    if ( !isThingValid(thing) ) {
+      instance.state.processing.set(false);
+      toastr.error("All fields are mandatory", "Can't save");
+      unfreezeTheForm(instance);
+      return;
+    }
+
     if ( instance.myDropzone.files.length > 0 ) {
       // TODO:
       // TEST CASE
@@ -77,7 +85,8 @@ Template.share_form.events({
             instance.state.thing = thing;
           } else {
             // console.log(e);
-            toastr.error("Something went wrong...", "Try posting again");
+            toastr.error("Try posting again", "Something went wrong...");
+            unfreezeTheForm(instance);
           }
   		});
     } else {
@@ -102,3 +111,36 @@ Template.share_form.onRendered(function() {
     maxFiles: 1,
   });
 });
+
+function freezeTheForm(instance) {
+  instance.$('.js-save')[0].disabled = true;
+  let categoryInput = instance.$('select#category')[0];
+  categoryInput.disabled = true;
+  let whatInput = instance.$('input#what')[0];
+  whatInput.disabled = true;
+  let whereInput = instance.$('input#where')[0];
+  whereInput.disabled = true;
+  let descriptionInput = instance.$('input#description')[0];
+  descriptionInput.disabled = true;
+  let priceInput = instance.$('input#price')[0];
+  priceInput.disabled = true;
+}
+
+function unfreezeTheForm(instance) {
+  instance.$('.js-save')[0]
+  .disabled                 = false;
+  let categoryInput         = instance.$('select#category')[0];
+  categoryInput.disabled    = false;
+  let whatInput             = instance.$('input#what')[0];
+  whatInput.disabled        = false;
+  let whereInput            = instance.$('input#where')[0];
+  whereInput.disabled       = false;
+  let descriptionInput      = instance.$('input#description')[0];
+  descriptionInput.disabled = false;
+  let priceInput            = instance.$('input#price')[0];
+  priceInput.disabled       = false;
+}
+
+function isThingValid(thing) {
+  return !!thing.category && !!thing.name && !!thing.address && !!thing.description && !!thing.price;
+}
