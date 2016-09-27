@@ -8,6 +8,8 @@ Template.thing_show.onCreated(function() {
 
 Template.thing_show.helpers({
   thing() {
-    return Things.findOne( { slug: FlowRouter.getParam('thing') } );
+    let thing = Things.findOne( { slug: FlowRouter.getParam('thing') } );
+    console.log(thing);
+    return thing;
   },
 });

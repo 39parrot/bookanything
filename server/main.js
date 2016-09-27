@@ -16,6 +16,13 @@ Meteor.startup(() => {
   });
 });
 
+S3.config = {
+	key: Meteor.settings.AWS.accessKeyId,
+	secret: Meteor.settings.AWS.secretAccessKey,
+	bucket: 'ba-items',
+	// region: 'eu-west-1' // Only needed if not "us-east-1" or "us-standard"
+};
+
 // if (Meteor.settings.AWS) {
 //   AWS.config.update({
 //     accessKeyId: Meteor.settings.AWS.accessKeyId,

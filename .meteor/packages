@@ -37,6 +37,8 @@ accounts-facebook
 useraccounts:bootstrap
 useraccounts:flow-routing
 service-configuration
-peerlibrary:aws-sdk
 sacha:spin
 chrismbeckett:toastr
+
+lepozepo:s3
+dbarrett:dropzonejs
