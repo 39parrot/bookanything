@@ -2,6 +2,13 @@ import '/imports/startup/server';
 
 import { Meteor } from 'meteor/meteor';
 
+S3.config = {
+  key: Meteor.settings.AWS.accessKeyId,
+  secret: Meteor.settings.AWS.secretAccessKey,
+  bucket: 'ba-items',
+  // region: 'eu-west-1' // Only needed if not "us-east-1" or "us-standard"
+};
+
 Meteor.startup(() => {
   // code to run on server at startup
 
@@ -14,14 +21,11 @@ Meteor.startup(() => {
       secret: Meteor.settings.facebook.secret
     }
   });
-});
 
-S3.config = {
-	key: Meteor.settings.AWS.accessKeyId,
-	secret: Meteor.settings.AWS.secretAccessKey,
-	bucket: 'ba-items',
-	// region: 'eu-west-1' // Only needed if not "us-east-1" or "us-standard"
-};
+  if ( !!Meteor.settings.email ) {
+    process.env.MAIL_URL = Meteor.settings.email.MAIL_URL;
+  }
+});
 
 // if (Meteor.settings.AWS) {
 //   AWS.config.update({

@@ -73,16 +73,15 @@ Template.share_form.events({
       S3.upload({
   				files:[instance.myDropzone.files[0]]
   			},function(e,r){
-          instance.state.processing.set(false);
+
           if (!e) {
             // console.log(r);
             thing.image = {
               url: r.secure_url
             }
+
             Things.insert( thing );
-            toastr.success("Done!");
-            instance.state.saved.set(true);
-            instance.state.thing = thing;
+            doAfterSuccessfullySaved( instance, thing );
           } else {
             // console.log(e);
             toastr.error("Try posting again", "Something went wrong...");
@@ -90,11 +89,8 @@ Template.share_form.events({
           }
   		});
     } else {
-      instance.state.processing.set(false);
       Things.insert( thing );
-      instance.state.saved.set(true);
-      instance.state.thing = thing;
-      toastr.success("Done!");
+      doAfterSuccessfullySaved( instance, thing );
     }
   }
 });
@@ -111,6 +107,14 @@ Template.share_form.onRendered(function() {
     maxFiles: 1,
   });
 });
+
+function doAfterSuccessfullySaved(instance, thing) {
+  instance.state.processing.set(false);
+  instance.state.saved.set(true);
+  instance.state.thing = thing;
+  toastr.success("Done!");
+  sendEmail( thing );
+}
 
 function freezeTheForm(instance) {
   instance.$('.js-save')[0].disabled = true;
@@ -143,4 +147,12 @@ function unfreezeTheForm(instance) {
 
 function isThingValid(thing) {
   return !!thing.category && !!thing.name && !!thing.address && !!thing.description && !!thing.price;
+}
+
+function sendEmail(thing) {
+  Meteor.call('sendStartSharingEmail',
+    Meteor.user().services.facebook.email, // to
+    'BookAnything <noreply@bookanything.com>', // from
+    thing
+  );
 }

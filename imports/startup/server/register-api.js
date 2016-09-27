@@ -1,4 +1,6 @@
-import '../../api/categories/categories.js';
-import '../../api/things/things.js';
-import '../../api/deals/deals.js';
-import '../../api/events/events.js';
+import '/imports/api/server/methods.js';
+
+import '/imports/api/categories/categories.js';
+import '/imports/api/things/things.js';
+import '/imports/api/deals/deals.js';
+import '/imports/api/events/events.js';

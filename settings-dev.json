@@ -1,0 +1,11 @@
+{
+  "facebook": {
+    "appId": "594004877445894",
+    "secret": "363af74b0d57ee23d0683bdcb016ad8b"
+  },
+  "AWS": {
+    "accessKeyId": "AKIAJDXBIOUHHEPVPBRA",
+    "secretAccessKey": "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"
+  },
+  "siteUri": "http://localhost:3000"
+}
