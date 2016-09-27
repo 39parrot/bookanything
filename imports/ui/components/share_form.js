@@ -32,6 +32,8 @@ Template.share_form.events({
     instance.state.processing.set(true);
 
     event.target.disabled = true;
+    let categoryInput = instance.$('select#category')[0];
+    categoryInput.disabled = true;
     let whatInput = instance.$('input#what')[0];
     whatInput.disabled = true;
     let whereInput = instance.$('input#where')[0];
@@ -51,7 +53,7 @@ Template.share_form.events({
       description: descriptionInput.value,
       price: priceInput.value,
       price_period: "w", // TODO:
-      category: "cars", // TODO:
+      category: categoryInput.value,
       owner: Meteor.userId(),
     }
     if ( instance.myDropzone.files.length > 0 ) {

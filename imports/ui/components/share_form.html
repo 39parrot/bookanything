@@ -22,6 +22,22 @@
           {{> spinner}}
         {{/if}}
 
+        <div class="title-row">
+					<div class="form-group">
+						<div class="input-group">
+							<span class="input-group-addon">
+								<i class="fa fa-briefcase" aria-hidden="true"></i>
+							</span>
+              <!-- TODO: get rid of this hardcode, categories are in the DB  -->
+							<select id="category">
+                <option>Select a category</option>
+                <option value="cars">Cars</option>
+                <option value="bicycles">Bicycles</option>
+                <option value="flats">Flats</option>
+              </select>
+						</div>
+					</div>
+				</div>
 				<div class="title-row">
 					<div class="form-group">
 						<div class="input-group">
@@ -32,6 +48,7 @@
 						</div>
 					</div>
 				</div>
+        <!-- TODO: geo autocomplete  -->
 				<div class="location-row">
 					<div class="form-group">
 						<div class="input-group">
