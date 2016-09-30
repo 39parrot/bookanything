@@ -47,7 +47,7 @@
           <ul>
             {{#each event in events}}
               {{#with event}}
-                <li class="js-event" >
+                <li class="js-event" id="{{ event._id }}">
                   <div style="{{ eventBackgroundCss event }}">
                     <div class="user">
                       <img src="{{ userProfilePictureUrlByUserId event.user }}" alt="user">

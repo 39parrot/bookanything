@@ -16,14 +16,20 @@ Meteor.methods({
   },
   sendNewMessageEmail: function (deal, thing, message) {
     this.unblock();
+    // if logged in user is the owner
+    //    it's the owner sending message to the borrower
+    // if logged in user is the borrower
+    //    it's the borrower sending message to the owner
+    let receiver = ( thing.owner === Meteor.userId() ? deal.borrower : thing.owner );
     Email.send({
-      to: Meteor.users.findOne( { _id: thing.owner } ).services.facebook.email,
+      to: Meteor.users.findOne( { _id: receiver } ).services.facebook.email,
       from: 'BookAnything <noreply@bookanything.com>',
       subject: 'New message',
       html: SSR.render('htmlEmailNewMessage', {
         siteUri: Meteor.settings.siteUri,
         deal: deal,
         thing: thing,
+        msg: message
       })
     });
   }
