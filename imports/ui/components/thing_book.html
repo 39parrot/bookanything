@@ -1,5 +1,35 @@
 <template name="thing_book">
-  {{#if processing}}
+  <!-- {{#if processing}}
     {{> spinner}}
-  {{/if}}
+  {{/if}} -->
+
+  <div>
+    <p>
+      TODO: here is supposed to be a calendar showing availability
+      but so far...
+    </p>
+    <p style="background-color: salmon">
+      <!-- TODO: hardcode  -->
+      1/9 <!-- beginning of the month  --> - 29/9 <!-- yesterday  -->: not available
+    </p>
+    <p style="background-color: salmon">
+      <!-- TODO: hardcode  -->
+      15/10 <!-- a random date in next month  --> - 30/10 <!-- end of next month  -->: not available
+    </p>
+  </div>
+
+  <div>
+    <label for="from" style="width: 50px">From:</label>
+    <input type="date" id="from" />
+  </div>
+  <div>
+    <label for="to" style="width: 50px">To:</label>
+    <input type="date" id="to" />
+  </div>
+
+  <div class="share">
+    <a href="#" class="btn btn-default js-book">
+      Book
+    </a>
+  </div>
 </template>
