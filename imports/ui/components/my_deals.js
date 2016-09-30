@@ -8,10 +8,14 @@ Template.my_deals.helpers({
   deals() {
     if ( !!Meteor.user() ) {
       myThings = Things.find( { owner: Meteor.userId() } ).map((thing) => { return thing.slug });
-      myDeals = Deals.find( { $or: [
-        { thing: { $in: myThings } },
-        { borrower: Meteor.userId() }
-      ] }).map( (deal) => { return deal.slug; } );
+      myDeals = Deals.find(
+        { $or: [
+          { thing: { $in: myThings } },
+          { borrower: Meteor.userId() }
+          ]
+        },
+        { sort: {booking_dt: -1} }
+      ).map( (deal) => { return deal.slug; } );
       if ( !!FlowRouter.getQueryParam('withNewMessagesOnly') ) {
         myDealsWithNewMessages = Events.find( { deal: { $in: myDeals }, seen: { $not: Meteor.userId() } } )
           .map( (event) => { return event.deal; } );
