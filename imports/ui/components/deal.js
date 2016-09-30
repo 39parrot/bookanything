@@ -35,10 +35,15 @@ Template.deal.helpers({
     return Template.instance().state.thing.get();
   },
   events() {
-    return Events.find(
-      { deal: Template.instance().state.deal.get().slug },
-      { sort: {dt: -1} }
-    );
+    let instance = Template.instance();
+    if ( !!instance.state.deal.get() ) {
+      return Events.find(
+        { deal: instance.state.deal.get().slug },
+        { sort: {dt: -1} }
+      );
+    } else {
+      return null;
+    }
   },
   canSendMessage() {
     return Template.instance().state.canSendMessage.get();
@@ -67,7 +72,7 @@ Template.deal.events({
     text = instance.$('.js-message')[0].value;
     instance.$('.js-message')[0].value = '';
 
-    Events.insert({
+    let msg = {
       deal: instance.state.deal.get().slug,
       dt: new Date(),
       type: "message",
@@ -76,7 +81,14 @@ Template.deal.events({
         text
       },
       seen: [ Meteor.userId() ]
-    });
+    }
+    Events.insert( msg );
+
+    Meteor.call('sendNewMessageEmail',
+      instance.state.deal.get(),
+      instance.state.thing.get(),
+      msg
+    );
 
     toastr.success("Message sent");
   }

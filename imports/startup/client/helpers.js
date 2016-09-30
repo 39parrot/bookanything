@@ -8,7 +8,12 @@ Template.registerHelper('userProfilePictureUrlByUserId', (userId) => {
 });
 
 Template.registerHelper('userNameByUserId', (userId) => {
-  return Meteor.users.findOne( { _id: userId } ).profile.name;
+  if ( !userId ) {
+    console.warn('userProfilePictureUrlByUserId', 'userId', userId);
+    return null;
+  } else {
+    return Meteor.users.findOne( { _id: userId } ).profile.name;
+  }
 });
 
 Template.registerHelper('thingImageUrl', (thing) => {
