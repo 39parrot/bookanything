@@ -73,6 +73,7 @@ Template.deal.events({
     instance.$('.js-message')[0].value = '';
 
     let msg = {
+      slug: _.random(100000, 999999).toString(),
       deal: instance.state.deal.get().slug,
       dt: new Date(),
       type: "message",
@@ -87,7 +88,7 @@ Template.deal.events({
     Meteor.call('sendNewMessageEmail',
       instance.state.deal.get(),
       instance.state.thing.get(),
-      msg
+      Events.findOne( { slug: msg.slug } )
     );
 
     toastr.success("Message sent");
