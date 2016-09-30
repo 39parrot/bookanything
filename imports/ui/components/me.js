@@ -19,3 +19,10 @@ Template.me.helpers({
     ] }).count();
   }
 });
+
+Template.me.events({
+  'click .js-logout'(e, i) {
+    Meteor.logout();
+    FlowRouter.go('/');
+  }
+});
