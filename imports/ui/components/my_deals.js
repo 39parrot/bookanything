@@ -10,18 +10,24 @@ Template.my_deals.helpers({
       myThings = Things.find( { owner: Meteor.userId() } ).map((thing) => { return thing.slug });
       myDeals = Deals.find(
         { $or: [
-          { thing: { $in: myThings } },
-          { borrower: Meteor.userId() }
+            { thing: { $in: myThings } },
+            { borrower: Meteor.userId() }
           ]
-        },
-        { sort: {booking_dt: -1} }
-      ).map( (deal) => { return deal.slug; } );
+        }
+      )
+      .map( (deal) => { return deal.slug; } );
       if ( !!FlowRouter.getQueryParam('withNewMessagesOnly') ) {
         myDealsWithNewMessages = Events.find( { deal: { $in: myDeals }, seen: { $not: Meteor.userId() } } )
           .map( (event) => { return event.deal; } );
-        return Deals.find( { slug: { $in: myDealsWithNewMessages } } );
+        return Deals.find(
+          { slug: { $in: myDealsWithNewMessages } },
+          { sort: {booking_dt: -1} }
+        );
       } else {
-        return Deals.find( { slug: { $in: myDeals } } );
+        return Deals.find(
+          { slug: { $in: myDeals } },
+          { sort: {booking_dt: -1} }
+        );
       }
     } else {
       console.warn('my.deals', 'no user');
