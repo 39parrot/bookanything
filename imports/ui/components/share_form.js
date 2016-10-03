@@ -1,6 +1,7 @@
 import './share_form.html';
 
 import { Things } from '/imports/api/things/things.js';
+import { Pools } from '/imports/api/pools/pools.js';
 
 Template.share_form.onCreated(function() {
   this.state = {
@@ -22,10 +23,16 @@ Template.share_form.helpers({
   },
   pathToThing(thing) {
     return `/things/${thing.slug}`;
+  },
+  pools() {
+    return Pools.find( { owner: Meteor.userId() } );
   }
 });
 
 Template.share_form.events({
+  // 'change input[name=pool]'(event, instance) {
+  //   console.log( instance.$('input[name="pool"]:checked')[0].value );
+  // },
   'click .js-save'(event, instance) {
     event.preventDefault();
 
@@ -64,6 +71,8 @@ Template.share_form.events({
       return;
     }
 
+    let poolId = instance.$('input[name="pool"]:checked')[0].value;
+    thing.privacy = { private: !!poolId }
     if ( instance.myDropzone.files.length > 0 ) {
       // TODO:
       // TEST CASE
@@ -80,7 +89,7 @@ Template.share_form.events({
               url: r.secure_url
             }
 
-            Things.insert( thing );
+            saveThing(thing, poolId);
             doAfterSuccessfullySaved( instance, thing );
           } else {
             // console.log(e);
@@ -89,7 +98,7 @@ Template.share_form.events({
           }
   		});
     } else {
-      Things.insert( thing );
+      saveThing(thing, poolId);
       doAfterSuccessfullySaved( instance, thing );
     }
   }
@@ -107,6 +116,22 @@ Template.share_form.onRendered(function() {
     maxFiles: 1,
   });
 });
+
+function saveThing(thing, poolId) {
+  Things.insert( thing, (err, _id) => {
+    if ( !err ) {
+      console.log(poolId);
+      if (poolId) {
+        Things.update(
+          { _id },
+          { $set:
+            { "privacy.hash": Pools.findOne( { _id: poolId } ).hash }
+          }
+        );
+      }
+    }
+  } );
+}
 
 function doAfterSuccessfullySaved(instance, thing) {
   instance.state.processing.set(false);

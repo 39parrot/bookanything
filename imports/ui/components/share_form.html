@@ -91,6 +91,7 @@
 						</div>
 					</div>
 				</div> -->
+        <!-- TODO: a lot of hardcode  -->
         <div>
           <p>
             --- Privacy --- <br />
@@ -98,13 +99,14 @@
             Add to pool <br />
             (pick one this thing belongs to / make a new one / skip privacy)
           </p>
-          <input type="radio" name="pool" value="asdhklf" />asdhklf <br />
-          <input type="radio" name="pool" value="ALDSF" />ALDSF<br />
-          <input type="radio" name="pool" value="1893465" />1893465<br />
+          {{#each pool in pools}}
+            <input type="radio" name="pool" value="{{pool._id}}" />{{pool.name}}<br />
+          {{/each}}
+          <span>TODO...</span><br />
           <label for="new_pool_name">Name</label>
-          <input type="text" name="new_pool_name" placeholder="ex. jewelry" /><br />
+          <input type="text" name="new_pool_name" placeholder="ex. jewelry" disabled="true" /><br />
           <label for="new_pool_secret">Secret</label>
-          <input type="text" name="new_pool_secret" placeholder="ex. unicorns-exist" />
+          <input type="text" name="new_pool_secret" placeholder="ex. unicorns-exist" disabled="true" />
           <button><a id="#add_pool" href="#add_pool">Add</a></button>
         </div>
         <!-- <div>
