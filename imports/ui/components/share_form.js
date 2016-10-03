@@ -30,6 +30,23 @@ Template.share_form.helpers({
 });
 
 Template.share_form.events({
+  'click .js-add-new-pool'(event, instance) {
+    event.preventDefault();
+
+    let account_name = Meteor.user().name;
+    let pool_name_input = instance.$('input[name="new_pool_name"]')[0];
+    let secret_input = instance.$('input[name="new_pool_secret"]')[0];
+    Pools.insert(
+      {
+        owner: Meteor.userId(),
+        name: pool_name_input.value,
+        secret: secret_input.value,
+        hash: CryptoJS.HmacMD5(`${account_name}/${pool_name_input.value}`, secret_input.value).toString(),
+      }
+    )
+    pool_name_input.value = null;
+    secret_input.value = null;
+  },
   // 'change input[name=pool]'(event, instance) {
   //   console.log( instance.$('input[name="pool"]:checked')[0].value );
   // },
