@@ -20,8 +20,10 @@ Template.category.helpers({
   things() {
     // TODO: limit collection
     // TODO: make infinite scroll
-    let memberships = Memberships.findOne( { user: Meteor.userId() } );
-    let hashes = memberships ? memberships.hashes || [] : [];
+    let memberships = Memberships.find( { user: Meteor.userId(), active: true } )
+      .map((m) => {
+        return m.hash;
+      });
     return Things.find(
       { $and:
         [

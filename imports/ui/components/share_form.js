@@ -88,7 +88,8 @@ Template.share_form.events({
       return;
     }
 
-    let poolId = instance.$('input[name="pool"]:checked')[0].value;
+    let selectedPoolInput = instance.$('input[name="pool"]:checked')[0] || {};
+    let poolId = selectedPoolInput.value;
     thing.privacy = { private: !!poolId }
     if ( instance.myDropzone.files.length > 0 ) {
       // TODO:
