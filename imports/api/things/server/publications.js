@@ -17,3 +17,7 @@ Meteor.publish('things.inCategory', function thingsInCategory(category) {
     ]
   }, {fields: Things.publicProjection});
 });
+
+Meteor.publish('things', function(slug) {
+  return Things.find({ slug });
+});
