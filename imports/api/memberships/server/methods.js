@@ -4,12 +4,9 @@ import { Memberships } from '/imports/api/memberships/memberships.js';
 Meteor.methods({
   claimMembership: function(poolOwnerName, secret) {
     if ( !!poolOwnerName && !!secret ) {
-      let poolOwnerAccount = Meteor.users.findOne( { name: poolOwnerName } ) || {};
+      let poolOwnerAccount = Meteor.users.findOne( { "data.name": poolOwnerName } ) || {};
       Pools.find( { owner: poolOwnerAccount._id, secret: secret } )
         .forEach((p) => {
-          if ( Memberships.findOne() ) {
-
-          }
           Memberships.insert({
             user: Meteor.userId(),
             hash: p.hash,

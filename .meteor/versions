@@ -4,7 +4,6 @@ accounts-oauth@1.1.13
 accounts-password@1.3.0
 allow-deny@1.0.5
 arillo:flow-router-helpers@0.5.2
-autopublish@1.0.7
 autoupdate@1.2.11
 babel-compiler@6.9.1
 babel-runtime@0.1.11
@@ -81,6 +80,7 @@ reactive-var@1.0.10
 reload@1.1.10
 retry@1.0.8
 reywood:bootstrap3-sass@3.3.5_2
+reywood:publish-composite@1.4.2
 routepolicy@1.0.11
 sacha:spin@2.3.1
 service-configuration@1.0.10

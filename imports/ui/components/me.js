@@ -5,6 +5,12 @@ import { Things } from '/imports/api/things/things.js';
 import { Memberships } from '/imports/api/memberships/memberships.js';
 import { Pools } from '/imports/api/pools/pools.js';
 
+Template.me.onCreated(function() {
+  this.autorun(() => {
+    this.subscribe('Meteor.users.data', { userIds: !!Meteor.user() ? [Meteor.user()._id] : [] });
+  });
+});
+
 Template.me.helpers({
   newMessagesCount() {
     // TODO:

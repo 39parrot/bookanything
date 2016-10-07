@@ -1,15 +1,15 @@
 import './catalog.html';
 
-import { CategoryCatalog } from '/imports/api/categories/categories.js';
+import { CategoryCatalogs } from '/imports/api/categories/categories.js';
 
 Template.catalog.onCreated(function() {
-  // this.subscribe('categories');
+  this.subscribe('catalog.latest');
 });
 
 Template.catalog.helpers({
   categories() {
-    catalog = CategoryCatalog.findOne();
-    return catalog ? catalog.categories : null;
+    const catalog = CategoryCatalogs.findOne() || {};
+    return catalog.categories;
   },
   classWide(cat) {
     return cat.image.wide ? 'wide' : null;

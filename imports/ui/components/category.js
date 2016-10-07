@@ -2,45 +2,23 @@ import './category.html';
 
 import { FlowRouter } from 'meteor/kadira:flow-router';
 
-import { CategoryCatalog } from '/imports/api/categories/categories.js';
+import { CategoryCatalogs } from '/imports/api/categories/categories.js';
 import { Things } from '/imports/api/things/things.js';
-import { Memberships } from '/imports/api/memberships/memberships.js';
 
 Template.category.onCreated(function() {
-  // this.autorun(() => {
-  //   console.log( Things.find({}).count() );
-  // });
+  this.getCategory = () => FlowRouter.getParam('category');
+  this.subscribe('catalog.latest');
+  this.autorun(() => {
+    this.subscribe('things.inCategory', this.getCategory());
+  });
 });
 
 Template.category.helpers({
   category() {
-    catalog = CategoryCatalog.findOne();
+    catalog = CategoryCatalogs.findOne();
     return catalog ? _.findWhere( catalog.categories, { name: FlowRouter.getParam('category') } ) : null;
   },
   things() {
-    // TODO: limit collection
-    // TODO: make infinite scroll
-    let memberships = Memberships.find( { user: Meteor.userId(), active: true } )
-      .map((m) => {
-        return m.hash;
-      });
-    return Things.find(
-      { $and:
-        [
-          { category: FlowRouter.getParam('category') },
-          { $or:
-            [
-              { "privacy.private": false },
-              { $and:
-                [
-                  { "privacy.private": true },
-                  { "privacy.hash": { $in: hashes } }
-                ]
-              }
-            ]
-          }
-        ]
-      }
-    );
+    return Things.find();
   },
 });
