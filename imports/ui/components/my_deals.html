@@ -5,7 +5,7 @@
       {{#each deal in deals}}
         <li class="item">
           <div class="image">
-            <img src="{{thingImageUrl thing}}" alt="">
+            <img src="{{thingImageUrl (dealThing deal)}}" alt="">
           </div>
           {{#let thing=(dealThing deal)}}
             <div class="content">

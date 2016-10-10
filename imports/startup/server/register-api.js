@@ -9,6 +9,8 @@ import '/imports/api/things/server/publications.js';
 import '/imports/api/things/server/methods.js';
 
 import '/imports/api/deals/deals.js';
+import '/imports/api/deals/server/publications.js';
+
 import '/imports/api/events/events.js';
 
 import '/imports/api/memberships/memberships.js';
