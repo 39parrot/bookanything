@@ -19,5 +19,9 @@ Meteor.publish('things.inCategory', function thingsInCategory(category) {
 });
 
 Meteor.publish('things', function(slug) {
-  return Things.find({ slug });
+  return Things.find( { slug } );
+});
+
+Meteor.publish('my.things', function(slug) {
+  return Things.find( { owner: this.userId } );
 });

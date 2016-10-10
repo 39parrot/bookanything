@@ -8,7 +8,11 @@ Template.share_form.onCreated(function() {
     processing: new ReactiveVar(false),
     saved: new ReactiveVar(false),
     thing: null,
-  }
+  };
+
+  this.autorun(() => {
+    this.subscribe('my.pools', Meteor.userId());
+  });
 });
 
 Template.share_form.helpers({

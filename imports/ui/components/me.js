@@ -8,6 +8,9 @@ import { Pools } from '/imports/api/pools/pools.js';
 Template.me.onCreated(function() {
   this.autorun(() => {
     this.subscribe('Meteor.users.data', { userIds: !!Meteor.user() ? [Meteor.user()._id] : [] });
+    this.subscribe('my.things', Meteor.userId());
+    this.subscribe('my.deals', false, Meteor.userId());
+    this.subscribe('my.memberships', Meteor.userId());
   });
 });
 
@@ -17,18 +20,13 @@ Template.me.helpers({
     return 3;
   },
   myThingsCount() {
-    return Things.find( { owner: Meteor.userId() } ).count();
+    return Things.find().count();
   },
   myDealsCount() {
-    myThings = Things.find( { owner: Meteor.userId() } ).map((thing) => { return thing.slug });
-    return myDeals = Deals.find( { $or: [
-      { thing: { $in: myThings } },
-      { borrower: Meteor.userId() }
-    ] }).count();
+    return Deals.find().count();
   },
   memberships() {
-    // TODO: take all active memberships
-    return Memberships.find( { user: Meteor.userId(), active: true } );
+    return Memberships.find();
   }
 });
 
