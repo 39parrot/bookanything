@@ -1,5 +1,23 @@
 import { Deals } from '/imports/api/deals/deals.js';
 import { Things } from '/imports/api/things/things.js';
+import { Events } from '/imports/api/events/events.js';
+
+Meteor.publish('deal.thing.events', function(slug) {
+  const deal = Deals.findOne( { slug } );
+  const dealThing = Things.findOne( { slug: deal.thing } );
+  if ( deal.borrower === this.userId || dealThing.owner === this.userId ) {
+    return [
+      Deals.find(deal._id),
+      Things.find( { slug: deal.thing } ),
+      Events.find(
+        { deal: deal.slug },
+        { sort: {dt: -1} }
+      )
+    ];
+  } else {
+    return null;
+  }
+});
 
 Meteor.publish('my.deals', function(withNewMessagesOnly) {
   if ( !this.userId ) {

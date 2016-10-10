@@ -7,46 +7,26 @@ import { Things } from '/imports/api/things/things.js';
 import { Events } from '/imports/api/events/events.js';
 
 Template.deal.onCreated(function() {
-  self = this;
-  self.state = {
-    deal: new ReactiveVar(),
-    thing: new ReactiveVar(),
-    canSendMessage: new ReactiveVar(false),
-  }
   this.autorun(() => {
-    self.state.deal.set(
-      Deals.findOne( { slug: FlowRouter.getParam('deal') } )
-    );
+    this.subscribe('deal.thing.events', FlowRouter.getParam('deal'), Meteor.userId());
   });
-  this.autorun(() => {
-    if ( !!self.state.deal.get() ) {
-      self.state.thing.set(
-        Things.findOne( { slug: self.state.deal.get().thing } )
-      )
-    }
-  });
+
+  this.state = new ReactiveDict('state');
+  this.state.set('canSendMessage', false);
 });
 
 Template.deal.helpers({
   deal() {
-    return Template.instance().state.deal.get();
+    return Deals.findOne();
   },
   thing() {
-    return Template.instance().state.thing.get();
+    return Things.findOne();
   },
   events() {
-    let instance = Template.instance();
-    if ( !!instance.state.deal.get() ) {
-      return Events.find(
-        { deal: instance.state.deal.get().slug },
-        { sort: {dt: -1} }
-      );
-    } else {
-      return null;
-    }
+    return Events.find( {}, { sort: {dt: -1} } );
   },
   canSendMessage() {
-    return Template.instance().state.canSendMessage.get();
+    return Template.instance().state.get('canSendMessage');
   },
   eventBackgroundCss(event) {
     return event.seen.indexOf( Meteor.userId() ) != -1 ? "" : "background-color: lightgreen";
@@ -60,21 +40,21 @@ Template.deal.events({
   },
   'input .js-message'(event, instance) {
     if ( event.target.value.length > 0 ) {
-      instance.state.canSendMessage.set(true);
+      instance.state.set('canSendMessage', true);
     } else {
-      instance.state.canSendMessage.set(false);
+      instance.state.set('canSendMessage', false);
     }
   },
   'click .js-send'(event, instance) {
     event.preventDefault();
 
-    instance.state.canSendMessage.set(false);
+    instance.state.set('canSendMessage', false);
     text = instance.$('.js-message')[0].value;
     instance.$('.js-message')[0].value = '';
 
     let msg = {
       slug: _.random(100000, 999999).toString(),
-      deal: instance.state.deal.get().slug,
+      deal: FlowRouter.getParam('deal'),
       dt: new Date(),
       type: "message",
       user: Meteor.userId(),
@@ -86,8 +66,7 @@ Template.deal.events({
     Events.insert( msg );
 
     Meteor.call('sendNewMessageEmail',
-      instance.state.deal.get(),
-      instance.state.thing.get(),
+      FlowRouter.getParam('deal'),
       Events.findOne( { slug: msg.slug } )
     );
 

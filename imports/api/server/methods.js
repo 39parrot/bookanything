@@ -14,8 +14,11 @@ Meteor.methods({
       })
     });
   },
-  sendNewMessageEmail: function (deal, thing, message) {
+  sendNewMessageEmail: function (dealSlug, message) {
     this.unblock();
+
+    const deal = Deals.findOne( { slug: dealSlug } );
+    const thing = Things.findOne( { slug: deal.thing } );
     // if logged in user is the owner
     //    it's the owner sending message to the borrower
     // if logged in user is the borrower
